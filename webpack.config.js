@@ -59,6 +59,7 @@ module.exports = async (env, options) => {
             filename: "assets/[name][ext][query]",
           },
         },
+        { test: /\.css$/, use: 'css-loader' },
       ],
     },
     plugins: [
