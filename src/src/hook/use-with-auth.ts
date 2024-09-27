@@ -1,6 +1,6 @@
 import { useWithSpfxLogin } from "abe-client";
-import { UserRole } from "abe-client/dist/store/slices/login";
 import React, { useEffect, useState } from "react";
+import { UserRole } from "../types";
 
 export function useWithAuth() {
     const {setUser} = useWithSpfxLogin();
