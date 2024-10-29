@@ -3,7 +3,7 @@ import { makeStyles } from "@fluentui/react-components";
 import { useWithAnalyzeText } from "../../src/use-with-analyze-text";
 import { useReduxHydration, ChatActivity, useWithPrompts, useWithCurrentGoalActivity, useWithState, useConfigLoader } from "abe-client";
 import { useWithAuth } from "../../src/hook/use-with-auth";
-import { getDocumentText } from "../taskpane";
+import { getCreationDate, getDocumentText } from "../taskpane";
 
 export interface AppProps {
   title: string;
@@ -24,13 +24,14 @@ const App: React.FC<AppProps> = () => {
   const {updateCurrentDocId, state} = useWithState();
   const useCurrentGoalActivity = useWithCurrentGoalActivity();
   const {configLoaded, ConfigLoader} = useConfigLoader();
+  const {getUserAuthToken} = useWithAuth();
   useReduxHydration();
-  useWithAuth();
 
 
     React.useEffect(() => {
-        // TODO: get this from the document context
-        updateCurrentDocId("0e04b774-a593-495a-8022-6a4e904f5b3b");
+        // TODO: get this from the list of documents
+        updateCurrentDocId("ff9489c2-d5fd-4bad-840f-5e191e1febe9");
+        console.log(getCreationDate());
     }, []);
 
 
@@ -44,6 +45,16 @@ const App: React.FC<AppProps> = () => {
         display:"flex",
         flexGrow:1,
       }}>
+        <button onClick={() => {
+          getCreationDate().then ((date)=>{
+            console.log(date);
+          })
+        }}>Get Document Creation Date</button>
+        <button onClick={() => {
+          getUserAuthToken().then ((token)=>{
+            console.log(token);
+          })
+        }}>Get User Auth Token</button>
       <ChatActivity 
         getDocData={async ()=>{
           const docText = await getDocumentText();

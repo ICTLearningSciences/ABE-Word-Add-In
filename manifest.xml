@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
-  <Id>ca3e1433-0121-4c62-83bf-d470809d6519</Id>
+  <Id>56bd5be9-fdb7-4a6f-8fdc-951845336fc9</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>Contoso</ProviderName>
+  <ProviderName>USC ICT</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="ts-react-add-in"/>
-  <Description DefaultValue="A template to get started."/>
+  <DisplayName DefaultValue="ABE Word Add In"/>
+  <Description DefaultValue="Writing Assistant for ABE"/>
+  <Requirements>
+  <Sets DefaultMinVersion="1.1">
+    <Set Name="IdentityApi" MinVersion="1.3" />
+  </Sets>
+  </Requirements>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
+    <AppDomain>https://localhost:3000</AppDomain>
+    <AppDomain>https://ictusc.sharepoint.com</AppDomain>
+    <AppDomain>https://dev.abewriting.org</AppDomain>
+    <AppDomain>https://qa.abewriting.org</AppDomain>
+    <AppDomain>https://abewriting.org</AppDomain>
     <AppDomain>https://www.contoso.com</AppDomain>
   </AppDomains>
   <Hosts>

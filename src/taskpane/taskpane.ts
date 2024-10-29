@@ -22,3 +22,13 @@ export async function getDocumentText(): Promise<string> {
     })
     return res;
 }
+
+export async function getCreationDate() {
+  const res = await Word.run(async (context) => {
+    const properties = context.document.properties;
+    properties.load("creationDate");
+    await context.sync();
+    return properties.creationDate;
+  })
+  return res;
+}

@@ -1,5 +1,5 @@
 import { useWithSpfxLogin } from "abe-client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { UserRole } from "../types";
 
 export function useWithAuth() {
@@ -17,6 +17,30 @@ export function useWithAuth() {
                 lastLoginAt: new Date()
             }
         })
+
     }, []);
 
+    async function getUserAuthToken(){
+        
+        try{
+            console.log("using runtime")
+            const accessToken = await OfficeRuntime.auth.getAccessToken({ allowSignInPrompt: true })
+            return accessToken;
+        } catch (error) {
+            try{
+                console.error(error);
+                console.log("using office")
+                const accessToken = await Office.auth.getAccessToken({ allowSignInPrompt: true })
+                return accessToken;
+            } catch (error) {
+                console.error(error);
+                throw error;
+            }
+        }
+    }
+
+    return {
+        getUserAuthToken
+    }
 }
+
