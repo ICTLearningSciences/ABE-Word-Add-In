@@ -1,9 +1,9 @@
 import * as React from "react";
 import { makeStyles } from "@fluentui/react-components";
-import { useWithAnalyzeText } from "../../src/use-with-analyze-text";
-import { useReduxHydration, ChatActivity, useWithPrompts, useWithCurrentGoalActivity, useWithState, useConfigLoader } from "abe-client";
+import { useReduxHydration, ChatActivity, useWithPrompts, useWithCurrentGoalActivity, useConfigLoader } from "abe-client";
 import { useWithAuth } from "../../src/hook/use-with-auth";
-import { getCreationDate, getDocumentText } from "../taskpane";
+import { getCreationDate, getDocumentCustomProperties, getDocumentText } from "../taskpane";
+import { useWithInitialize } from "../../src/hook/use-with-initialize";
 
 export interface AppProps {
   title: string;
@@ -18,22 +18,12 @@ export const useStyles = makeStyles({
 
 const App: React.FC<AppProps> = () => {
   const styles = useStyles();
-  const [aiRole, setAiRole] = React.useState("");
-  const {output, analyzeText, loading, error } = useWithAnalyzeText();
   const usePrompts = useWithPrompts();
-  const {updateCurrentDocId, state} = useWithState();
   const useCurrentGoalActivity = useWithCurrentGoalActivity();
   const {configLoaded, ConfigLoader} = useConfigLoader();
   const {getUserAuthToken} = useWithAuth();
   useReduxHydration();
-
-
-    React.useEffect(() => {
-        // TODO: get this from the list of documents
-        updateCurrentDocId("ff9489c2-d5fd-4bad-840f-5e191e1febe9");
-        console.log(getCreationDate());
-    }, []);
-
+  useWithInitialize();
 
   if (!configLoaded) {
     return <ConfigLoader />;
@@ -45,11 +35,6 @@ const App: React.FC<AppProps> = () => {
         display:"flex",
         flexGrow:1,
       }}>
-        <button onClick={() => {
-          getCreationDate().then ((date)=>{
-            console.log(date);
-          })
-        }}>Get Document Creation Date</button>
         <button onClick={() => {
           getUserAuthToken().then ((token)=>{
             console.log(token);

@@ -9,7 +9,7 @@ Gotchas
 
 
 ## Development
-
+ - update access token in .env
  - `make develop` to start the dev server
  - `npm run start` to start the dev server and open a new Word document on desktop OR 
  - `npm run start:web -- --document 'url_of_document'` to start the dev server and open the document in the browser

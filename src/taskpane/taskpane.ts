@@ -32,3 +32,13 @@ export async function getCreationDate() {
   })
   return res;
 }
+
+export async function getDocumentCustomProperties() {
+  const res = await Word.run(async (context) => {
+    const properties = context.document.properties;
+    properties.load("customProperties");
+    await context.sync();
+    return properties.customProperties;
+  })
+  return res;
+}
