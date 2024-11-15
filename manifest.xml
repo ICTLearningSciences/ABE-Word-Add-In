@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
-  <Id>56bd5be9-fdb7-4a6f-8fdc-951845336fc9</Id>
+  <Id>cb525eb7-b2b8-4057-a684-390a58398577</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>USC ICT</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
@@ -15,12 +15,8 @@
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
-    <AppDomain>https://localhost:3000</AppDomain>
-    <AppDomain>https://ictusc.sharepoint.com</AppDomain>
-    <AppDomain>https://dev.abewriting.org</AppDomain>
-    <AppDomain>https://qa.abewriting.org</AppDomain>
-    <AppDomain>https://abewriting.org</AppDomain>
-    <AppDomain>https://www.contoso.com</AppDomain>
+    <AppDomain>ictusc.sharepoint.com</AppDomain>
+    <AppDomain>localhost:3000</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Document"/>
@@ -90,6 +86,16 @@
         <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Taskpane' button to get started."/>
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane"/>
       </bt:LongStrings>
-    </Resources>
+    </Resources>  
+    <WebApplicationInfo>
+      <Id>cb525eb7-b2b8-4057-a684-390a38398577</Id>
+      <Resource>api://localhost:3000/cb525eb7-b2b8-4057-a684-390a38398577</Resource>
+      <Scopes>
+        <Scope>openid</Scope>
+        <Scope>email</Scope>
+        <Scope>User.Read</Scope>
+        <Scope>profile</Scope>
+      </Scopes>
+    </WebApplicationInfo>
   </VersionOverrides>
 </OfficeApp>
