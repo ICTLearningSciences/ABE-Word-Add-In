@@ -8,18 +8,21 @@ export function useWithAuth() {
     async function getUserAuthToken(){
         try{
             console.log("using runtime")
-            const accessToken = await OfficeRuntime.auth.getAccessToken({ allowSignInPrompt: true })
+            const accessToken = await Office.auth.getAccessToken({ allowSignInPrompt: true, allowConsentPrompt: true })
+            console.log(accessToken)
             return accessToken;
         } catch (error) {
-            try{
-                console.error(error);
-                console.log("using office")
-                const accessToken = await Office.auth.getAccessToken({ allowSignInPrompt: true })
-                return accessToken;
-            } catch (error) {
-                console.error(error);
-                throw error;
-            }
+            console.error(error);
+            throw error;
+            // try{
+            //     console.error(error);
+            //     console.log("using office")
+            //     const accessToken = await Office.auth.getAccessToken({ allowSignInPrompt: true, allowConsentPrompt: true })
+            //     return accessToken;
+            // } catch (error) {
+            //     console.error(error);
+            //     throw error;
+            // }
         }
     }
 
