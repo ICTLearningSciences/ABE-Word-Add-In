@@ -9,13 +9,8 @@ export function useWithInitialize() {
     const {state: userState} = useWithSpfxLogin();
     const user = userState.user;
     const {updateCurrentDocId, state} = useWithState();
-    const {initializeUser} = useWithAuth();
     const userGoogleDocs = state.userGoogleDocs;
     const googleDocsLoaded = state.userGoogleDocsLoadStatus === 2
-
-    useEffect(() => {
-        initializeUser();
-    }, []);
 
     useEffect(() => {
         if(!user?._id || !googleDocsLoaded) return;

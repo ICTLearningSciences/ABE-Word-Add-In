@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
-  <Id>cb525eb7-b2b8-4057-a684-390a58398577</Id>
+  <Id>59caf628-2305-4c4d-b199-45c4e5aea81b</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>USC ICT</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
@@ -88,11 +88,9 @@
       </bt:LongStrings>
     </Resources>  
     <WebApplicationInfo>
-      <Id>cb525eb7-b2b8-4057-a684-390a38398577</Id>
-      <Resource>api://localhost:3000/cb525eb7-b2b8-4057-a684-390a38398577</Resource>
+      <Id>57fae547-5d23-472f-8bf3-7987cddc6a26</Id>
+      <Resource>api://localhost:3000/57fae547-5d23-472f-8bf3-7987cddc6a26</Resource>
       <Scopes>
-        <Scope>openid</Scope>
-        <Scope>email</Scope>
         <Scope>User.Read</Scope>
         <Scope>profile</Scope>
       </Scopes>

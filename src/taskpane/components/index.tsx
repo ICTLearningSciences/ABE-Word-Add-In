@@ -1,10 +1,10 @@
 import * as React from "react";
-import { makeStyles } from "@fluentui/react-components";
+import { Button, makeStyles } from "@fluentui/react-components";
 import { useReduxHydration, ChatActivity, useWithPrompts, useWithCurrentGoalActivity, useConfigLoader } from "abe-client";
 import { useWithAuth } from "../../src/hook/use-with-auth";
 import { getCreationDate, getDocumentCustomProperties, getDocumentText } from "../taskpane";
 import { useWithInitialize } from "../../src/hook/use-with-initialize";
-
+import { getMsalToken } from "../../src/hook/use-with-msal-auth";
 export interface AppProps {
   title: string;
 }
@@ -21,7 +21,7 @@ const App: React.FC<AppProps> = () => {
   const usePrompts = useWithPrompts();
   const useCurrentGoalActivity = useWithCurrentGoalActivity();
   const {configLoaded, ConfigLoader} = useConfigLoader();
-  const {getUserAuthToken} = useWithAuth();
+  const {getUserAuthToken, loginUser} = useWithAuth();
   useReduxHydration();
   useWithInitialize();
 
@@ -32,15 +32,18 @@ const App: React.FC<AppProps> = () => {
     <div className={styles.root}>
       <div style={{
         height:"800px",
+        width:"800px",
         display:"flex",
         flexGrow:1,
       }}>
-        <button onClick={() => {
-          getUserAuthToken().then ((token)=>{
-            console.log(token);
+        <Button
+        onClick={()=>{
+          loginUser().catch((error)=>{
+            console.error(error);
           })
-        }}>Get User Auth Token</button>
-      <ChatActivity 
+        }}
+        >Login with MSAL</Button>
+      {/* <ChatActivity 
         getDocData={async ()=>{
           const docText = await getDocumentText();
           return {
@@ -55,7 +58,7 @@ const App: React.FC<AppProps> = () => {
         isNewDoc={false}
         useWithPrompts={usePrompts}
         useCurrentGoalActivity={useCurrentGoalActivity}
-      />
+      /> */}
       </div>
     </div>
   );
