@@ -3,7 +3,7 @@ import { PublicClientApplication } from "@azure/msal-browser";
 
 const msalConfig = {
     auth: {
-        clientId: "57fae547-5d23-472f-8bf3-7987cddc6a26",
+        clientId: "cb525eb7-b2b8-4057-a684-390a38398577",
         authority: "https://login.microsoftonline.com/8d72fbfc-6717-444c-8802-45ba651d8fa2",
     },
 };

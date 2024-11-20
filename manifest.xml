@@ -88,8 +88,8 @@
       </bt:LongStrings>
     </Resources>  
     <WebApplicationInfo>
-      <Id>57fae547-5d23-472f-8bf3-7987cddc6a26</Id>
-      <Resource>api://localhost:3000/57fae547-5d23-472f-8bf3-7987cddc6a26</Resource>
+      <Id>cb525eb7-b2b8-4057-a684-390a38398577</Id>
+      <Resource>api://localhost:3000/cb525eb7-b2b8-4057-a684-390a38398577</Resource>
       <Scopes>
         <Scope>User.Read</Scope>
         <Scope>profile</Scope>
