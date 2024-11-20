@@ -21,29 +21,21 @@ const App: React.FC<AppProps> = () => {
   const usePrompts = useWithPrompts();
   const useCurrentGoalActivity = useWithCurrentGoalActivity();
   const {configLoaded, ConfigLoader} = useConfigLoader();
-  const {getUserAuthToken, loginUser} = useWithAuth();
+  const {userLoggedIn} = useWithAuth();
   useReduxHydration();
   useWithInitialize();
 
-  if (!configLoaded) {
+  if (!configLoaded || !userLoggedIn) {
     return <ConfigLoader />;
   }
   return (
     <div className={styles.root}>
       <div style={{
         height:"800px",
-        width:"800px",
         display:"flex",
         flexGrow:1,
       }}>
-        <Button
-        onClick={()=>{
-          loginUser().catch((error)=>{
-            console.error(error);
-          })
-        }}
-        >Login with MSAL</Button>
-      {/* <ChatActivity 
+      <ChatActivity 
         getDocData={async ()=>{
           const docText = await getDocumentText();
           return {
@@ -58,7 +50,7 @@ const App: React.FC<AppProps> = () => {
         isNewDoc={false}
         useWithPrompts={usePrompts}
         useCurrentGoalActivity={useCurrentGoalActivity}
-      /> */}
+      />
       </div>
     </div>
   );

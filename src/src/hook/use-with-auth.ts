@@ -52,7 +52,8 @@ export function useWithAuth() {
     return {
         getUserAuthToken,
         loginUser,
-        initializeUser
+        initializeUser,
+        userLoggedIn: state.loginStatus === 3
     }
 }
 

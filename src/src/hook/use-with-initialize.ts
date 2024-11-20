@@ -11,6 +11,11 @@ export function useWithInitialize() {
     const {updateCurrentDocId, state} = useWithState();
     const userGoogleDocs = state.userGoogleDocs;
     const googleDocsLoaded = state.userGoogleDocsLoadStatus === 2
+    const {loginUser} = useWithAuth();
+    
+    useEffect(() => {
+        loginUser();
+    }, []);
 
     useEffect(() => {
         if(!user?._id || !googleDocsLoaded) return;
