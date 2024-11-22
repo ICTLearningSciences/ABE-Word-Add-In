@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
   <Id>59caf628-2305-4c4d-b199-45c4e5aea81b</Id>
-  <Version>1.0.0.0</Version>
+  <Version>1.0.0.2</Version>
   <ProviderName>USC ICT</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="ABE Word Add In"/>
+  <DisplayName DefaultValue="TEST 2 ABE Word Add In"/>
   <Description DefaultValue="Writing Assistant for ABE"/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
@@ -82,7 +82,7 @@
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane"/>
       </bt:LongStrings>
     </Resources>  
-    <WebApplicationInfo>
+    <!-- <WebApplicationInfo>
       <Id>cb525eb7-b2b8-4057-a684-390a38398577</Id>
       <Resource>api://localhost:3000/cb525eb7-b2b8-4057-a684-390a38398577</Resource>
       <Scopes>
@@ -90,6 +90,6 @@
         <Scope>profile</Scope>
         <Scope>openid</Scope>
       </Scopes>
-    </WebApplicationInfo>
+    </WebApplicationInfo> -->
   </VersionOverrides>
 </OfficeApp>

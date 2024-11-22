@@ -6,7 +6,7 @@ import { UserRole } from "../types";
 import { getMsalToken } from "./use-with-msal-auth";
 
 export function useWithAuth() {
-    const {setUser, loginWithMicrosoft, state} = useWithSpfxLogin();
+    const {setUser, loginWithMicrosoft, state, logout} = useWithSpfxLogin();
 
     
 
@@ -53,7 +53,9 @@ export function useWithAuth() {
         getUserAuthToken,
         loginUser,
         initializeUser,
-        userLoggedIn: state.loginStatus === 3
+        userLoggedIn: state.loginStatus === 3,
+        loginState: state,
+        logout
     }
 }
 

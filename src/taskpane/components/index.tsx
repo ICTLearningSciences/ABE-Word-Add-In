@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Button, makeStyles } from "@fluentui/react-components";
-import { useReduxHydration, ChatActivity, useWithPrompts, useWithCurrentGoalActivity, useConfigLoader } from "abe-client";
+import { useReduxHydration, ChatActivity, useWithPrompts, useWithCurrentGoalActivity, useConfigLoader, LoginUI } from "abe-client";
 import { useWithAuth } from "../../src/hook/use-with-auth";
-import { getCreationDate, getDocumentCustomProperties, getDocumentText } from "../taskpane";
 import { useWithInitialize } from "../../src/hook/use-with-initialize";
-import { getMsalToken } from "../../src/hook/use-with-msal-auth";
+import { ColumnCenterDiv } from "../../styled-components";
+import { getDocumentText } from "../taskpane";
 export interface AppProps {
   title: string;
 }
@@ -21,13 +21,19 @@ const App: React.FC<AppProps> = () => {
   const usePrompts = useWithPrompts();
   const useCurrentGoalActivity = useWithCurrentGoalActivity();
   const {configLoaded, ConfigLoader} = useConfigLoader();
-  const {userLoggedIn} = useWithAuth();
+  const {userLoggedIn, loginState, loginUser, logout} = useWithAuth();
   useReduxHydration();
   useWithInitialize();
 
   if (!configLoaded || !userLoggedIn) {
-    return <ConfigLoader />;
+    return <ColumnCenterDiv style={{
+      height:"100vh",
+    }}>
+      {!configLoaded && <ConfigLoader />}
+      {(configLoaded && !userLoggedIn) && <LoginUI loginState={loginState} login={loginUser} loginText="Login With Microsoft" orgName="ABE" />}
+    </ColumnCenterDiv>;
   }
+
   return (
     <div className={styles.root}>
       <div style={{
@@ -35,6 +41,13 @@ const App: React.FC<AppProps> = () => {
         display:"flex",
         flexGrow:1,
       }}>
+        <Button style={{
+          position:"absolute",
+          top:0,
+          right:0,
+        }} onClick={()=>{
+          logout();
+        }}>Logout</Button>
       <ChatActivity 
         getDocData={async ()=>{
           const docText = await getDocumentText();
