@@ -1,11 +1,22 @@
 import { useWithSpfxLogin, useWithState } from "abe-client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getDocumentCustomProperties } from "../../taskpane/taskpane";
 import { DOCUMENT_UNIQUE_ID_KEY } from "../constants";
 import { useWithAuth } from "./use-with-auth";
 
-export function useWithInitialize() {
 
+export enum InitializeDocumentStatus{
+    Loading,
+    Loaded,
+    Error
+}
+export interface InitializeDocumentState{
+    status: InitializeDocumentStatus,
+    error?: string
+}
+
+export function useWithInitialize() {
+    const [initializeDocumentState, setInitializeDocumentState] = useState<InitializeDocumentState>({status: InitializeDocumentStatus.Loading});
     const {state: userState} = useWithSpfxLogin();
     const user = userState.user;
     const {updateCurrentDocId, state} = useWithState();
@@ -20,22 +31,24 @@ export function useWithInitialize() {
     useEffect(() => {
         if(!user?._id || !googleDocsLoaded) return;
         getDocumentCustomProperties().then((curDocProperties) => {
-            console.log(curDocProperties);
             const curDocId = curDocProperties.items.find((property) => property.key === DOCUMENT_UNIQUE_ID_KEY)?.value;
-            console.log(curDocId);
             if(curDocId){
                 const userGoogleDoc = userGoogleDocs.find((doc) => doc.wordDocId === curDocId)
-                console.log(userGoogleDoc);
                 if(userGoogleDoc){
-                    console.log(`updating current doc id: ${userGoogleDoc.googleDocId}`);
                     updateCurrentDocId(userGoogleDoc.googleDocId);
+                    setInitializeDocumentState({status: InitializeDocumentStatus.Loaded});
                 }else{
-                    throw new Error("No document unique id found");
+                    setInitializeDocumentState({status: InitializeDocumentStatus.Error, error: "This document does not belong to the user."});
                 }
             }else{
-                throw new Error("No document unique id found");
+                setInitializeDocumentState({status: InitializeDocumentStatus.Error, error: "This add-in only supports documents created through the ABE interface."});
             }
+        }).catch((error) => {
+            setInitializeDocumentState({status: InitializeDocumentStatus.Error, error: error.message});
         });
     }, [user?._id, googleDocsLoaded]);
 
+    return {
+        initializeDocumentState
+    }
 }

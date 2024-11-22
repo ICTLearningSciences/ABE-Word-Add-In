@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Button, makeStyles } from "@fluentui/react-components";
+import { Button, makeStyles, Spinner } from "@fluentui/react-components";
 import { useReduxHydration, ChatActivity, useWithPrompts, useWithCurrentGoalActivity, useConfigLoader, LoginUI } from "abe-client";
 import { useWithAuth } from "../../src/hook/use-with-auth";
-import { useWithInitialize } from "../../src/hook/use-with-initialize";
+import { InitializeDocumentStatus, useWithInitialize } from "../../src/hook/use-with-initialize";
 import { ColumnCenterDiv } from "../../styled-components";
 import { getDocumentText } from "../taskpane";
 export interface AppProps {
@@ -23,7 +23,8 @@ const App: React.FC<AppProps> = () => {
   const {configLoaded, ConfigLoader} = useConfigLoader();
   const {userLoggedIn, loginState, loginUser, logout} = useWithAuth();
   useReduxHydration();
-  useWithInitialize();
+  const {initializeDocumentState} = useWithInitialize();
+  const docLoaded = initializeDocumentState.status === InitializeDocumentStatus.Loaded;
 
   if (!configLoaded || !userLoggedIn) {
     return <ColumnCenterDiv style={{
@@ -34,10 +35,19 @@ const App: React.FC<AppProps> = () => {
     </ColumnCenterDiv>;
   }
 
+  if(!docLoaded){
+    return <ColumnCenterDiv style={{
+      height:"100vh",
+    }}>
+      {initializeDocumentState.status === InitializeDocumentStatus.Error && <div>{initializeDocumentState.error}</div>}
+      {initializeDocumentState.status === InitializeDocumentStatus.Loading && <Spinner />}
+    </ColumnCenterDiv>;
+  }
+
   return (
     <div className={styles.root}>
       <div style={{
-        height:"800px",
+        height:"100vh",
         display:"flex",
         flexGrow:1,
       }}>
