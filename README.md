@@ -9,6 +9,7 @@ Gotchas
 
 
 ## Development
+ - node version 18.13.0
  - update access token in .env
  - NOTE: on first run, you may need to open https://127.0.0.1:3000/manifest.xml in a separate browser and move past security warnings
  - `make develop` to start the dev server
