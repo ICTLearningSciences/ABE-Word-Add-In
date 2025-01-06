@@ -24,7 +24,24 @@ const App: React.FC<AppProps> = () => {
   const {userLoggedIn, loginState, loginUser, logout} = useWithAuth();
   useReduxHydration();
   const {initializeDocumentState} = useWithInitialize();
-  const docLoaded = initializeDocumentState.status === InitializeDocumentStatus.Loaded;
+  const docLoading = initializeDocumentState.status === InitializeDocumentStatus.VERIFYING_ABE_DOC || initializeDocumentState.status === InitializeDocumentStatus.LOCATING_DB_DOC;
+  const docError = initializeDocumentState.status === InitializeDocumentStatus.Error;
+
+  if(docError){
+    return <ColumnCenterDiv style={{
+      height:"100vh",
+    }}>
+      <div>{initializeDocumentState.error}</div>
+    </ColumnCenterDiv>;
+  }
+
+  if(docLoading || usePrompts.isLoading){
+    return <ColumnCenterDiv style={{
+      height:"100vh",
+    }}>
+      {docLoading && <Spinner />}
+    </ColumnCenterDiv>;
+  }
 
   if (!configLoaded || !userLoggedIn) {
     return <ColumnCenterDiv style={{
@@ -32,15 +49,6 @@ const App: React.FC<AppProps> = () => {
     }}>
       {!configLoaded && <ConfigLoader />}
       {(configLoaded && !userLoggedIn) && <LoginUI loginState={loginState} login={loginUser} loginText="Login With Microsoft" orgName="ABE" />}
-    </ColumnCenterDiv>;
-  }
-
-  if(!docLoaded){
-    return <ColumnCenterDiv style={{
-      height:"100vh",
-    }}>
-      {initializeDocumentState.status === InitializeDocumentStatus.Error && <div>{initializeDocumentState.error}</div>}
-      {initializeDocumentState.status === InitializeDocumentStatus.Loading && <Spinner />}
     </ColumnCenterDiv>;
   }
 

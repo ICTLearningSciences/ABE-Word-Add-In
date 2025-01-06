@@ -17,3 +17,5 @@ Gotchas
  - `npm run start:web -- --document 'url_of_document'` to start the dev server and open the document in the browser
 
 
+# Deployment
+https://docs.google.com/document/d/1I_RPuA8-IxUuQTXNIrBa9_bPCkMSTcQiMeMRW8DISMk/edit?tab=t.0#heading=h.q3bcm53hmtp5
