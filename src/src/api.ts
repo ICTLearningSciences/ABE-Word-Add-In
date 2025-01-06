@@ -111,7 +111,6 @@ export async function asyncOpenAiRequest(
   userId: string,
   cancelToken?: CancelToken
 ): Promise<OpenAiJobId> {
-  console.log(accessToken);
   const res = await execHttp<OpenAiJobId>(
     'POST',
     `${API_ENDPOINT}/async_open_ai_doc_question/?docId=${docsId}&userAction=${UserActions.MULTISTEP_PROMPTS}&userId=${userId}`,

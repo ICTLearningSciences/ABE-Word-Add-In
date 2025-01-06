@@ -26,7 +26,6 @@ export function useWithInitialize() {
     const userGoogleDocs = state.userGoogleDocs;
     const googleDocsLoaded = state.userGoogleDocsLoadStatus === 2
     const {loginUser} = useWithAuth();
-    console.log(initializeDocumentState.status)
     useEffect(() => {
         loginUser();
     }, []);
