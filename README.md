@@ -19,3 +19,10 @@ Gotchas
 
 # Deployment
 https://docs.google.com/document/d/1I_RPuA8-IxUuQTXNIrBa9_bPCkMSTcQiMeMRW8DISMk/edit?tab=t.0#heading=h.hzlqf0j4bzgy
+in repo:
+ - `npm run build`
+ - copy dist folder to azure blob storage previously created
+Note, if this is your first time deploying:
+ - Update manifest.xml to point to the resources in the bucket instead of localhost
+ - Update Azure App Registration Redirect URI to include the Azure Blob Storage hosted taskpane.html fully qualified domain URL
+

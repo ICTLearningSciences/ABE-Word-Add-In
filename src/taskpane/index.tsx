@@ -6,13 +6,15 @@ import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 
 /* global document, Office, module, require, HTMLElement */
 
-const title = "Contoso Task Pane Add-in";
+const title = "AWE Word Add-In";
 
 const rootElement: HTMLElement | null = document.getElementById("container");
 const root = rootElement ? createRoot(rootElement) : undefined;
 
 /* Render application after Office initializes */
 Office.onReady(() => {
+  Office.context.document.settings.set("Office.AutoShowTaskpaneWithDocument", true);
+  Office.context.document.settings.saveAsync();
   root?.render(
     <FluentProvider theme={webLightTheme}>
       <App title={title} />
