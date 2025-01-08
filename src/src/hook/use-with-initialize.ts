@@ -27,8 +27,10 @@ export function useWithInitialize() {
     const googleDocsLoaded = state.userGoogleDocsLoadStatus === 2
     const {loginUser} = useWithAuth();
     useEffect(() => {
-        loginUser();
-    }, []);
+        if(customDocId){
+            loginUser();
+        }
+    }, [customDocId]);
 
     useEffect(() => {
         if(initializeDocumentState.status !== InitializeDocumentStatus.VERIFYING_ABE_DOC) return;

@@ -20,7 +20,7 @@ const App: React.FC<AppProps> = () => {
   const styles = useStyles();
   const usePrompts = useWithPrompts();
   const useCurrentGoalActivity = useWithCurrentGoalActivity();
-  const {configLoaded, ConfigLoader} = useConfigLoader();
+  const {configLoaded, ConfigLoader} = useConfigLoader("army");
   const {userLoggedIn, loginState, loginUser, logout} = useWithAuth();
   useReduxHydration();
   const {initializeDocumentState} = useWithInitialize();
@@ -48,7 +48,13 @@ const App: React.FC<AppProps> = () => {
       height:"100vh",
     }}>
       {!configLoaded && <ConfigLoader />}
-      {(configLoaded && !userLoggedIn) && <LoginUI loginState={loginState} login={loginUser} loginText="Login With Microsoft" orgName="ABE" />}
+      {(configLoaded && !userLoggedIn)
+      && <LoginUI
+      loginState={loginState}
+      login={loginUser}
+      loginText="Login With Microsoft"
+      orgName="AWE"
+      />}
     </ColumnCenterDiv>;
   }
 

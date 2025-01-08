@@ -4,8 +4,8 @@
   <Version>1.0.0.5</Version>
   <ProviderName>USC ICT</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="AWE Word Add-In"/>
-  <Description DefaultValue="Writing Assistant for ABE"/>
+  <DisplayName DefaultValue="AWE Coach"/>
+  <Description DefaultValue="Writing Assistant for AWE"/>
   <IconUrl DefaultValue="https://abestorage6245.z13.web.core.windows.net/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://abestorage6245.z13.web.core.windows.net/assets/icon-64.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
@@ -51,7 +51,7 @@
                     <bt:Image size="80" resid="Icon.80x80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <TaskpaneId>Office.AutoShowTaskpaneWithDocument</TaskpaneId>
                     <SourceLocation resid="Taskpane.Url"/>
                   </Action>
                 </Control>
@@ -73,12 +73,12 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://abestorage6245.z13.web.core.windows.net/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Get started with your sample add-in!"/>
-        <bt:String id="CommandsGroup.Label" DefaultValue="ICT Add-Ins"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="AWE Word Add-In"/>
+        <bt:String id="GetStarted.Title" DefaultValue="AWE Word Add-In Ready"/>
+        <bt:String id="CommandsGroup.Label" DefaultValue="AWE Writing"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Documents"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="The AWE Word Add-In is now available. Go to the HOME tab and click the 'Word Add-In' button to get started."/>
+        <bt:String id="GetStarted.Description" DefaultValue="The AWE Word Add-In is now available. Under the HOME tab, click the 'Documents' button under the 'AWE Writing' group to get started."/>
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane"/>
       </bt:LongStrings>
     </Resources>  
