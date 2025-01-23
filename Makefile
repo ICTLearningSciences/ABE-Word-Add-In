@@ -6,6 +6,8 @@ develop:
 
 .PHONY: deploy
 deploy:
+	npm run build
+	rm -r ./deploy/dist
 	cp -r ./dist ./deploy/dist
 	docker build -t deploy ./deploy
 	docker run -it deploy
