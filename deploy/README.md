@@ -1,0 +1,1 @@
+This requires an azure storage account with a container to upload to, as defined in the .env file. We then use a docker container to upload the files to the storage account.

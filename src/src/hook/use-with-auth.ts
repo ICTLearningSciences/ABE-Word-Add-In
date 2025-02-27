@@ -1,8 +1,4 @@
 import { useWithSpfxLogin } from "abe-client";
-import React, { useEffect } from "react";
-import form from "form-urlencoded";
-import * as jwt_decode from 'jwt-decode';
-import { UserRole } from "../types";
 import { getMsalToken } from "./use-with-msal-auth";
 
 export function useWithAuth() {
@@ -12,9 +8,6 @@ export function useWithAuth() {
 
     async function getUserAuthToken(){
         try{
-            // console.log("using runtime")
-            // const accessToken = await Office.auth.getAccessToken({ allowSignInPrompt: true, allowConsentPrompt: true })
-            console.log("using msal")
             const accessToken = await getMsalToken();
             return accessToken;
         } catch (error) {

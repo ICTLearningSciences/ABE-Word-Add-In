@@ -15,7 +15,6 @@ export const useStyles = makeStyles({
   },
 });
 
-
 const App: React.FC<AppProps> = () => {
   const styles = useStyles();
   const usePrompts = useWithPrompts();
@@ -26,7 +25,8 @@ const App: React.FC<AppProps> = () => {
   const {initializeDocumentState} = useWithInitialize();
   const docLoading = initializeDocumentState.status === InitializeDocumentStatus.VERIFYING_ABE_DOC || initializeDocumentState.status === InitializeDocumentStatus.LOCATING_DB_DOC;
   const docError = initializeDocumentState.status === InitializeDocumentStatus.Error;
-
+  console.log("hello, world!");
+  console.log(process.env.REACT_APP_GRAPHQL_ENDPOINT);
   if(docError){
     return <ColumnCenterDiv style={{
       height:"100vh",
