@@ -87,6 +87,8 @@ const App: React.FC<AppProps> = () => {
         isNewDoc={false}
         useWithPrompts={usePrompts}
         useCurrentGoalActivity={useCurrentGoalActivity}
+        previewingActivity={false}
+        setPreviewingActivity={()=>{}}
       />
       </div>
     </div>
