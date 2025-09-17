@@ -14,7 +14,7 @@ Gotchas
  - NOTE: on first run, you may need to open https://127.0.0.1:3000/manifest.xml in a separate browser and move past security warnings
  - `make develop` to start the dev server
  - `npm run start` to start the dev server and open a new Word document on desktop OR 
- - `npm run start:web -- --document 'url_of_document'` to start the dev server and open the document in the browser
+ - `npm run start:web -- --document 'https://ictusc.sharepoint.com/:w:/r/sites/SANDBOX/_layouts/15/Doc.aspx?sourcedoc=%7B43c776e0-b1e5-40c9-84e5-ffcf52393396%7D&action=default&mobileredirect=true'` to start the dev server and open the document in the browser
 
 
 # Deployment
