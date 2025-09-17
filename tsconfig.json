@@ -8,7 +8,7 @@
     "jsx": "react",
     "module": "CommonJS",
     "moduleResolution": "node",
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "noUnusedParameters": true,
     "outDir": "dist",
     "removeComments": false,

@@ -1,10 +1,11 @@
 import * as React from "react";
 import { Button, makeStyles, Spinner } from "@fluentui/react-components";
-import { useReduxHydration, ChatActivity, useWithPrompts, useWithCurrentGoalActivity, useConfigLoader, LoginUI } from "abe-client";
+import { useReduxHydration, ChatActivity, useWithPrompts, useWithCurrentGoalActivity, useConfigLoader, LoginUI, useWithRawTextDocVersions } from "abe-client";
 import { useWithAuth } from "../../src/hook/use-with-auth";
 import { InitializeDocumentStatus, useWithInitialize } from "../../src/hook/use-with-initialize";
 import { ColumnCenterDiv } from "../../styled-components";
 import { getDocumentText } from "../taskpane";
+import { useWithDocVersioning } from "../../src/hook/use-with-doc-versioning";
 export interface AppProps {
   title: string;
 }
@@ -22,11 +23,10 @@ const App: React.FC<AppProps> = () => {
   const {configLoaded, ConfigLoader} = useConfigLoader("army");
   const {userLoggedIn, loginState, loginUser, logout} = useWithAuth();
   useReduxHydration();
+  useWithDocVersioning();
   const {initializeDocumentState} = useWithInitialize();
   const docLoading = initializeDocumentState.status === InitializeDocumentStatus.VERIFYING_ABE_DOC || initializeDocumentState.status === InitializeDocumentStatus.LOCATING_DB_DOC;
   const docError = initializeDocumentState.status === InitializeDocumentStatus.Error;
-  console.log("hello, world!");
-  console.log(process.env.REACT_APP_GRAPHQL_ENDPOINT);
   if(docError){
     return <ColumnCenterDiv style={{
       height:"100vh",
@@ -73,19 +73,19 @@ const App: React.FC<AppProps> = () => {
           logout();
         }}>Logout</Button>
       <ChatActivity 
-        getDocData={async ()=>{
-          const docText = await getDocumentText();
-          return {
-            plainText: docText,
-            lastChangedId: "123",
-          title: "Test title",
-          lastModifyingUser: "Test user",
-          modifiedTime: "2024-09-27T21:55:42.534Z",
-        }}}
+        // getDocData={async ()=>{
+        //   const docText = await getDocumentText();
+        //   return {
+        //     plainText: docText,
+        //     lastChangedId: "123",
+        //   title: "Test title",
+        //   lastModifyingUser: "Test user",
+        //   modifiedTime: "2024-09-27T21:55:42.534Z",
+        // }}}
         activityFromParams=""
         goalFromParams=""
         isNewDoc={false}
-        useWithPrompts={usePrompts}
+        // useWithPrompts={usePrompts}
         useCurrentGoalActivity={useCurrentGoalActivity}
         previewingActivity={false}
         setPreviewingActivity={()=>{}}

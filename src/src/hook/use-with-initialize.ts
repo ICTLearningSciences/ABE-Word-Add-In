@@ -23,8 +23,8 @@ export function useWithInitialize() {
     const {state: userState} = useWithSpfxLogin();
     const user = userState.user;
     const {updateCurrentDocId, state} = useWithState();
-    const userGoogleDocs = state.userGoogleDocs;
-    const googleDocsLoaded = state.userGoogleDocsLoadStatus === 2
+    const userGoogleDocs = state.userDocs;
+    const googleDocsLoaded = state.userDocsLoadStatus === 2
     const {loginUser} = useWithAuth();
     useEffect(() => {
         if(customDocId){
